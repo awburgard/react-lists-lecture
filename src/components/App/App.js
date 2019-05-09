@@ -4,46 +4,16 @@ class App extends React.Component {
   state = {
     newInput: {
       name: '',
-      origin: '',
     },
-    creaturesList: [
-      { name: 'Unicorn', origin: 'European' },
-      { name: 'Dragon', origin: 'China' },
-      { name: 'Kappa', origin: 'Japan' }
-    ],
+    creaturesList: [ 'Unicorn', 'Dragon', 'Kappa' ],
   };
 
-  // storeNewCreatureName = (event) => {
-  //   const inputValue = event.target.value;
-  //   console.log('inputValue', inputValue);
-  //   this.setState({
-  //     newInput: {
-  //       ...this.state.newInput,
-  //       name: inputValue,
-  //     }
-  //   });
-  // }
-
-  // storeNewCreatureOrigin = (event) => {
-  //   const inputValue = event.target.value;
-  //   console.log('inputValue', inputValue);
-  //   this.setState({
-  //     newInput: {
-  //       ...this.state.newInput,
-  //       origin: inputValue,
-  //     }
-  //   });
-  // }
-
-  storeNewCreature = (event) => {
+  storeNewCreatureName = (event) => {
     const inputValue = event.target.value;
-    const propertyKey = event.target.getAttribute('name');
-    console.log('propertyKey', propertyKey);
     console.log('inputValue', inputValue);
     this.setState({
       newInput: {
-        ...this.state.newInput,
-        [propertyKey]: inputValue,
+        name: inputValue,
       }
     });
   }
@@ -69,10 +39,9 @@ class App extends React.Component {
     //   htmlCreatures.push(<li key={i}>{indvCreature}</li>);
     // }
     const htmlCreatures = this.state.creaturesList.map((indvCreature, i) => {
-      return <li key={i}>{indvCreature.name} is from {indvCreature.origin}</li>;
-    })
+      return <li key={i}>{indvCreature}</li>;
+    });
     console.log(htmlCreatures);
-    // const inputField = <input placeholder="variable" />
 
     return (
       <div>
@@ -82,16 +51,9 @@ class App extends React.Component {
         </p>
         <input
           type="text"
-          name="name"
+          name="creatureName"
           placeholder="Creature Name"
           value={this.state.newInput.name}
-          onChange={this.storeNewCreature}
-        />
-        <input
-          type="text"
-          name="origin"
-          placeholder="Origin"
-          value={this.state.newInput.origin}
           onChange={this.storeNewCreature}
         />
         <button onClick={this.addNewCreature}>Add New Creature</button>
