@@ -6,11 +6,14 @@ class App extends React.Component {
   };
 
   render() {
-    const htmlCreatures = [];
-    for (let i = 0; i < this.state.creaturesList.length; i++) {
-      const indvCreature = this.state.creaturesList[i]
-      htmlCreatures.push(<li key={i}>{indvCreature}</li>);
-    }
+    // const htmlCreatures = [];
+    // for (let i = 0; i < this.state.creaturesList.length; i++) {
+    //   const indvCreature = this.state.creaturesList[i]
+    //   htmlCreatures.push(<li key={i}>{indvCreature}</li>);
+    // }
+    const htmlCreatures = this.state.creaturesList.map((indvCreature, i) => {
+      return <li key={i}>{indvCreature}</li>;
+    })
     console.log(htmlCreatures);
 
     return (
