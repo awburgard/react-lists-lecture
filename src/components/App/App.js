@@ -13,6 +13,7 @@ class App extends React.Component {
     ],
   };
 
+  // store a new value inputted by the usre on our local state (this.state.newInput)
   storeNewCreature = (event) => {
     const inputValue = event.target.value; // event.target represents the <input> element that the user is interacting with
     const propertyKey = event.target.getAttribute('name');
