@@ -13,47 +13,28 @@ class App extends React.Component {
     ],
   };
 
-  // storeNewCreatureName = (event) => {
-  //   const inputValue = event.target.value;
-  //   console.log('inputValue', inputValue);
-  //   this.setState({
-  //     newInput: {
-  //       ...this.state.newInput,
-  //       name: inputValue,
-  //     }
-  //   });
-  // }
-
-  // storeNewCreatureOrigin = (event) => {
-  //   const inputValue = event.target.value;
-  //   console.log('inputValue', inputValue);
-  //   this.setState({
-  //     newInput: {
-  //       ...this.state.newInput,
-  //       origin: inputValue,
-  //     }
-  //   });
-  // }
-
   storeNewCreature = (event) => {
-    const inputValue = event.target.value;
+    const inputValue = event.target.value; // event.target represents the <input> element that the user is interacting with
     const propertyKey = event.target.getAttribute('name');
     console.log('propertyKey', propertyKey);
     console.log('inputValue', inputValue);
     this.setState({
       newInput: {
+        // using the 'spread' operator (...) to ensure that all properties from our state object 'newInput' are represented on our object
         ...this.state.newInput,
         [propertyKey]: inputValue,
       }
     });
   }
 
+  // Creates a new array for the state of the 'creaturesList' and clear out the form field input values
   addNewCreature = (event) => {
-    const newCreature = {
-      name: this.state.newInput.name,
-      origin: this.state.newInput.origin,
+    const newCreature = { // creating a new creature object with a 'name' and 'origin' key to be added to our new 'creaturesList' array
+      name: this.state.newInput.name, // this.state.newInput.name, is the current input value for Creature Name
+      origin: this.state.newInput.origin, // this.state.newInput.origin, is the current input value for Creature Origin
     };
     this.setState({
+      // We are using the 'spread' operator (...) to put all items from this.state.creaturesList into our new array
       creaturesList: [...this.state.creaturesList, newCreature],
       newInput: {
         name: '',
@@ -63,16 +44,10 @@ class App extends React.Component {
   }
 
   render() {
-    // const htmlCreatures = [];
-    // for (let i = 0; i < this.state.creaturesList.length; i++) {
-    //   const indvCreature = this.state.creaturesList[i]
-    //   htmlCreatures.push(<li key={i}>{indvCreature}</li>);
-    // }
     const htmlCreatures = this.state.creaturesList.map((indvCreature, i) => {
       return <li key={i}>{indvCreature.name} is from {indvCreature.origin}</li>;
     })
     console.log(htmlCreatures);
-    // const inputField = <input placeholder="variable" />
 
     return (
       <div>
