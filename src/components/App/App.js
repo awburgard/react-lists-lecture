@@ -13,24 +13,37 @@ class App extends React.Component {
     ],
   };
 
-  storeNewCreatureName = (event) => {
-    const inputValue = event.target.value;
-    console.log('inputValue', inputValue);
-    this.setState({
-      newInput: {
-        ...this.state.newInput,
-        name: inputValue,
-      }
-    });
-  }
+  // storeNewCreatureName = (event) => {
+  //   const inputValue = event.target.value;
+  //   console.log('inputValue', inputValue);
+  //   this.setState({
+  //     newInput: {
+  //       ...this.state.newInput,
+  //       name: inputValue,
+  //     }
+  //   });
+  // }
 
-  storeNewCreatureOrigin = (event) => {
+  // storeNewCreatureOrigin = (event) => {
+  //   const inputValue = event.target.value;
+  //   console.log('inputValue', inputValue);
+  //   this.setState({
+  //     newInput: {
+  //       ...this.state.newInput,
+  //       origin: inputValue,
+  //     }
+  //   });
+  // }
+
+  storeNewCreature = (event) => {
     const inputValue = event.target.value;
+    const propertyKey = event.target.getAttribute('name');
+    console.log('propertyKey', propertyKey);
     console.log('inputValue', inputValue);
     this.setState({
       newInput: {
         ...this.state.newInput,
-        origin: inputValue,
+        [propertyKey]: inputValue,
       }
     });
   }
@@ -69,17 +82,17 @@ class App extends React.Component {
         </p>
         <input
           type="text"
-          name="creatureName"
+          name="name"
           placeholder="Creature Name"
           value={this.state.newInput.name}
-          onChange={this.storeNewCreatureName}
+          onChange={this.storeNewCreature}
         />
         <input
           type="text"
-          name="creatureOrigin"
+          name="origin"
           placeholder="Origin"
           value={this.state.newInput.origin}
-          onChange={this.storeNewCreatureOrigin}
+          onChange={this.storeNewCreature}
         />
         <button onClick={this.addNewCreature}>Add New Creature</button>
         <ul>
